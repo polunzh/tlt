@@ -112,7 +112,7 @@ function init() {
   program
     .version('0.0.1')
     .option('-C, --config', 'config keys')
-    .option('--history [type]')
+    .option('--history [type]', 'query history')
     .parse(process.argv);
 
   if (!process.argv.slice(2).length) {
