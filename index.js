@@ -47,6 +47,10 @@ function updateHistory(word) {
 }
 
 function readHistory() {
+  if (!fs.existsSync(historyFile)) {
+    return [];
+  }
+
   const historyWordMap = JSON.parse(fs.readFileSync(historyFile));
   if (historyWordMap) {
     const keys = Object.keys(historyWordMap);
@@ -72,6 +76,10 @@ function readSpecificWordHistory(word) {
 
 function printHistory(words, pageSize = 20) {
   if (Array.isArray(words)) {
+    if (words.length === 0) {
+      console.log(`${os.EOL} 暂无查询历时`);
+    }
+
     for (let i = 0; i < words.length; i++) {
       let printWidth = 8 - words[i].word.length;
       printWidth = printWidth < 0 ? 0 : printWidth;
@@ -148,7 +156,7 @@ function init() {
           }
 
           updateHistory(q);
-          console.log(`${os.EOL}  第${colors.blue(readSpecificWordHistory(q))}次查询`);
+          console.log(`${os.EOL}=> 第${colors.blue(readSpecificWordHistory(q))}次查询`);
         })
         .catch(err => {
           console.log('error occured!');
