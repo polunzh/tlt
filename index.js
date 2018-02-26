@@ -156,7 +156,14 @@ function init() {
           }
 
           updateHistory(q);
+
           console.log(`${os.EOL}=> 第${colors.blue(readSpecificWordHistory(q))}次查询`);
+          console.log(`${os.EOL}${colors.green('G') +
+              colors.red('o') +
+              colors.yellow('o') +
+              colors.blue('g') +
+              colors.green('l') +
+              colors.red('e')}: https://translate.google.cn/#en/zh-CN/${q}`);
         })
         .catch(err => {
           console.log('error occured!');
